@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2clhe1ab2hnf"]
+
+[ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_6vdv1"]
+[ext_resource type="Texture2D" uid="uid://c7socb70dcjc2" path="res://scenes/game_object/player/player.png" id="1_waviv"]
+[ext_resource type="PackedScene" uid="uid://dhgw7wk0t008h" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_qasiu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljwyv"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edv5p"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_6vdv1")
+
+[node name="AbilityManager" type="Node" parent="."]
+
+[node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_qasiu")]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ljwyv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_waviv")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_edv5p")
